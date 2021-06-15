@@ -10,17 +10,6 @@ class ProbabilityList:
     total = 0
 
 
-def get_distinct_words(file):
-    distinct_words = []
-    for line in file:
-        words = line.split()
-        for word in words:
-            if word not in distinct_words:
-                distinct_words.append(word)
-
-    return distinct_words
-
-
 def read_file(filepath):
     return open(filepath, "r", encoding="utf8").read()
 
@@ -48,12 +37,15 @@ def select_word(transition_matrix, starting_sequence):
     prob_dist = transition_matrix[starting_sequence].next_word_probability
     words = []
     vals = []
-    for k, v in prob_dist:
+    for k in prob_dist:
         words.append(k)
-        vals.append(v / prob_dist.total)
+        vals.append(prob_dist[k] / transition_matrix[starting_sequence].total)
     return choices(words, vals)
 
 
 if __name__ == "__main__":
     f = read_file("../tests/input-text/metamorphosis-kafka.txt")
-    print(get_distinct_words(f))
+    m = get_transition_matrix(f)
+    print(m)
+    for i in range(0, 10):
+        print(select_word(m, "email"))
