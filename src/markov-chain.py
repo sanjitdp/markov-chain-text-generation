@@ -14,8 +14,8 @@ def get_transition_matrix(file, k):
         if index == len(words) - k:
             break
 
-        k_word_list = [words[index + x] for x in range(1, k + 1)]
-        for x in range(1, k):
+        k_word_list = []
+        for x in range(1, k + 1):
             k_word_list.append(words[index + x])
         next_k_words = ""
         for w in k_word_list:
