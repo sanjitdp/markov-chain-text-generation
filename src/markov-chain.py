@@ -1,5 +1,6 @@
 from random import choices
 
+
 def read_file(filepath):
     return open(filepath, "r", encoding="utf8")
 
@@ -26,12 +27,8 @@ def select_word(transition_matrix, starting_sequence):
     vals = []
     for k, v in prob_dist:
         words.append(k)
-        vals.append(v/prob_dist.getTotal())
-    return choices(words,vals)
-
-
-
-
+        vals.append(v / prob_dist.total)
+    return choices(words, vals)
 
 
 if __name__ == "__main__":
