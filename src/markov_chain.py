@@ -1,4 +1,4 @@
-from random import choices, randint
+from random import choices
 
 
 def read_file(filepath):
@@ -37,20 +37,8 @@ def select_word(transition_matrix, starting_word):
     prob_dist = transition_matrix[starting_word][0]
 
     words = []
-    vals = []
+    values = []
     for next_word in prob_dist:
         words.append(next_word)
-        vals.append(prob_dist[next_word] / transition_matrix[starting_word][1])
-    return choices(words, vals)[0]
-
-
-if __name__ == "__main__":
-    f = read_file("../tests/input-text/metamorphosis-kafka.txt")
-    m = get_transition_matrix(f, 3)
-
-    prev_word = "The"
-    print(prev_word, end=" ")
-    for i in range(0, 100):
-        next_words = select_word(m, prev_word)
-        prev_word = next_words.split()[-1]
-        print(next_words, end="")
+        values.append(prob_dist[next_word] / transition_matrix[starting_word][1])
+    return choices(words, values)[0]
