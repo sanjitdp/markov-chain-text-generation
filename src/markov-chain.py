@@ -9,7 +9,6 @@ def get_transition_matrix(file):
     transition_matrix = {}
 
     words = file.split()
-
     for index, word in enumerate(words):
         if index == len(words) - 1:
             break
@@ -40,8 +39,8 @@ if __name__ == "__main__":
     f = read_file("../tests/input-text/metamorphosis-kafka.txt")
     m = get_transition_matrix(f)
 
-    prev_word = "the"
-    print(prev_word + " ")
+    prev_word = "The"
+    print(prev_word, end=" ")
     for i in range(0, 100):
         prev_word = select_word(m, prev_word)
-        print(prev_word + " ")
+        print(prev_word, end=" ")
